@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #1e1e2f;
+    color: #fff;
+}
+header {
+    background: #2a2a3c;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+nav ul li {
+    margin: 0 15px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #f8b400;
+    font-size: 24px; /* Increased font size */
+    transition: 0.3s;
+}
+nav ul li a:hover {
+    color: #ffdd57;
+}
+section {
+    padding: 100px 20px;
+    text-align: center;
+    min-height: 100vh;
+}
+#home { background: #34344a; }
+#about { background: #3b3b58; }
+#contact { background: #4a4a6a; }
+#certifications { background: #585880; }
+
+.cert-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+.cert-card {
+    background: #2a2a3c;
+    padding: 20px; /* Increased padding */
+    border-radius: 10px;
+    text-align: center;
+}
+.cert-card img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+.cert-card h3 {
+    margin-top: 15px; /* Increased margin */
+    color: #f8b400;
+    font-size: 24px; /* Increased font size */
+}
+
+/* Additional styling for better readability */
+h1 {
+    font-size: 48px; /* Larger font size for main heading */
+}
+
+h2 {
+    font-size: 36px; /* Larger font size for section headings */
+}
+
+p {
+    font-size: 20px; /* Larger font size for paragraphs */
+}body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #1e1e2f;
+    color: #fff;
+}
+header {
+    background: #2a2a3c;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+nav ul li {
+    margin: 0 15px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #f8b400;
+    font-size: 18px; /* Increased font size */
+    transition: 0.3s;
+}
+nav ul li a:hover {
+    color: #ffdd57;
+}
+section {
+    padding: 100px 20px;
+    text-align: center;
+    min-height: 100vh;
+}
+#home { background: #34344a; }
+#about { background: #3b3b58; }
+#contact { background: #4a4a6a; }
+#certifications { background: #585880; }
+
+.cert-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+.cert-card {
+    background: #2a2a3c;
+    padding: 20px; /* Increased padding */
+    border-radius: 10px;
+    text-align: center;
+}
+.cert-card img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+.cert-card h3 {
+    margin-top: 15px; /* Increased margin */
+    color: #f8b400;
+    font-size: 24px; /* Increased font size */
+}
+
+/* Additional styling for better readability */
+h1 {
+    font-size: 48px; /* Larger font size for main heading */
+}
+
+h2 {
+    font-size: 36px; /* Larger font size for section headings */
+}
+
+p {
+    font-size: 20px; /* Larger font size for paragraphs */
+}

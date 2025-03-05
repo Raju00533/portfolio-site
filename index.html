@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home">
+        <h1>Welcome to My Portfolio</h1>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <div class="cert-container">
+            <div class="cert-card">
+                <img src="assets/Hacker-Rank-Certification.JPG" alt="Certification 1">
+                <h3>HackerRank Certified Software Engineer</h3>
+                <p>Issued by HackerRank</p>
+
+            </div>
+            <div class="cert-card">
+                <img src="" alt="Certification 2">
+                <h3>Certified Software Engineer</h3>
+                <p>Issued by HackerRank</p>
+            </div>
+
+            <div class="cert-card">
+                <img src="cert2.jpg" alt="Certification 2">
+                <h3>Certification Name 2</h3>
+                <p>Issued by HackerRank</p>
+            </div>
+
+            <div class="cert-card">
+                <img src="cert2.jpg" alt="Certification 2">
+                <h3>Certification Name 2</h3>
+                <p>Issued by HackerRank</p>
+            </div>
+        </div>
+
+
+    </section>
+
+    <script>
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
