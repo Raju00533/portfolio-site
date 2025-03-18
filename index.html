@@ -3,74 +3,427 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>DevOps & Cybersecurity Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="styles.css">
-    
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="home">
-        <h1>Welcome to My Portfolio</h1>
-    </section>
-
-    <section id="about">
-        <h2>About Me</h2>
-    </section>
-
-    <section id="contact">
-        <h2>Contact</h2>
-    </section>
-
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <div class="cert-container">
-            <div class="cert-card">
-                <img src="assets/Hacker-Rank-Certification.JPG" alt="Certification 1">
-                <h3>HackerRank Certified Software Engineer</h3>
-                <p>Issued by HackerRank</p>
-
+    <!-- Terminal-style Preloader -->
+    <div class="preloader">
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-title">Loading System...</div>
+                <div class="terminal-controls">
+                    <span class="control close"></span>
+                    <span class="control minimize"></span>
+                    <span class="control maximize"></span>
+                </div>
             </div>
-            <div class="cert-card">
-                <img src="" alt="Certification 2">
-                <h3>Certified Software Engineer</h3>
-                <p>Issued by HackerRank</p>
-            </div>
-
-            <div class="cert-card">
-                <img src="cert2.jpg" alt="Certification 2">
-                <h3>Certification Name 2</h3>
-                <p>Issued by HackerRank</p>
-            </div>
-
-            <div class="cert-card">
-                <img src="cert2.jpg" alt="Certification 2">
-                <h3>Certification Name 2</h3>
-                <p>Issued by HackerRank</p>
+            <div class="terminal-content">
+                <div class="line">Initializing system components...</div>
+                <div class="line">Loading security protocols...</div>
+                <div class="line">Establishing secure connection...</div>
+                <div class="line">System ready.</div>
             </div>
         </div>
+    </div>
 
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Matrix-style Navbar -->
+        <nav class="navbar">
+            <div class="logo">
+                <div class="logo-terminal">
+                    <span class="prompt">$</span>
+                    <span class="command">whoami</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active"><i class="fas fa-terminal"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-user-secret"></i> About</a></li>
+                <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
+                <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
 
-    </section>
+        <!-- Hero Section with Matrix Effect -->
+        <section id="home" class="hero">
+            <canvas id="matrix"></canvas>
+            <div class="hero-content">
+                <div class="hero-text" data-aos="fade-right">
+                    <div class="terminal-text">
+                        <span class="prompt">$</span>
+                        <span class="command">echo "Hello, World!"</span>
+                    </div>
+                    <h1>DevOps Engineer & Cybersecurity Specialist</h1>
+                    <div class="typing-text">
+                        <span class="typed-text"></span>
+                        <span class="cursor">|</span>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-code-branch"></i> View Projects
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="fas fa-shield-alt"></i> Contact Me
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-stats" data-aos="fade-left">
+                    <div class="stat-card">
+                        <i class="fas fa-server"></i>
+                        <span class="number">50+</span>
+                        <span class="label">Infrastructure Deployments</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-shield-virus"></i>
+                        <span class="number">100+</span>
+                        <span class="label">Security Assessments</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-cloud"></i>
+                        <span class="number">3+</span>
+                        <span class="label">Cloud Platforms</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <script>
-        document.querySelectorAll('nav ul li a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
+        <!-- About Section with Terminal Style -->
+        <section id="about" class="section">
+            <div class="section-content">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="terminal-text">
+                        <span class="prompt">$</span>
+                        <span class="command">cat about.txt</span>
+                    </div>
+                    <h2>About Me</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-terminal" data-aos="fade-right">
+                        <div class="terminal-header">
+                            <div class="terminal-title">about.txt</div>
+                            <div class="terminal-controls">
+                                <span class="control close"></span>
+                                <span class="control minimize"></span>
+                                <span class="control maximize"></span>
+                            </div>
+                        </div>
+                        <div class="terminal-content">
+                            <p>I am a DevOps Engineer with a passion for cybersecurity and cloud automation. Currently pursuing my MSc in Cybersecurity, I specialize in:</p>
+                            <ul>
+                                <li>Cloud Infrastructure Automation</li>
+                                <li>Linux System Administration</li>
+                                <li>Offensive Security</li>
+                                <li>DevOps Practices</li>
+                                <li>Security Automation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="about-skills" data-aos="fade-left">
+                        <div class="skill-category">
+                            <h3>DevOps</h3>
+                            <div class="skill-tags">
+                                <span class="tag">Docker</span>
+                                <span class="tag">Kubernetes</span>
+                                <span class="tag">Jenkins</span>
+                                <span class="tag">GitLab CI</span>
+                                <span class="tag">Terraform</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Cloud</h3>
+                            <div class="skill-tags">
+                                <span class="tag">AWS</span>
+                                <span class="tag">Azure</span>
+                                <span class="tag">GCP</span>
+                                <span class="tag">CloudFormation</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Security</h3>
+                            <div class="skill-tags">
+                                <span class="tag">Penetration Testing</span>
+                                <span class="tag">Kali Linux</span>
+                                <span class="tag">Metasploit</span>
+                                <span class="tag">Burp Suite</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add this section after the About section -->
+        <section id="skills" class="section skills-section">
+            <div class="section-content">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="terminal-text">
+                        <span class="prompt">$</span>
+                        <span class="command">ls ./skills/</span>
+                    </div>
+                    <h2>Technical Skills</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category" data-aos="fade-up">
+                        <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <i class="fab fa-aws"></i>
+                                <span>AWS</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-docker"></i>
+                                <span>Docker</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-dharmachakra"></i>
+                                <span>Kubernetes</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-code-branch"></i>
+                                <span>CI/CD</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" style="width: 88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                        <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <i class="fas fa-bug"></i>
+                                <span>Penetration Testing</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-lock"></i>
+                                <span>Security Automation</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" style="width: 82%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-shield-virus"></i>
+                                <span>Vulnerability Assessment</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-network-wired"></i>
+                                <span>Network Security</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                        <h3><i class="fas fa-terminal"></i> Systems</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <i class="fab fa-linux"></i>
+                                <span>Linux Administration</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-server"></i>
+                                <span>System Architecture</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-code"></i>
+                                <span>Shell Scripting</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-cogs"></i>
+                                <span>Automation</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section with Interactive Cards -->
+        <section id="projects" class="section">
+            <div class="section-content">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="terminal-text">
+                        <span class="prompt">$</span>
+                        <span class="command">ls projects/</span>
+                    </div>
+                    <h2>Featured Projects</h2>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card" data-aos="fade-up" data-category="devops">
+                        <div class="project-header">
+                            <i class="fas fa-server"></i>
+                            <h3>Infrastructure as Code</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>Automated cloud infrastructure deployment using Terraform and AWS CloudFormation.</p>
+                            <div class="tech-stack">
+                                <span>Terraform</span>
+                                <span>AWS</span>
+                                <span>Docker</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="github-link"><i class="fab fa-github"></i> Code</a>
+                                <a href="#" class="demo-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more project cards -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="section">
+            <div class="section-content">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="terminal-text">
+                        <span class="prompt">$</span>
+                        <span class="command">cat certifications.txt</span>
+                    </div>
+                    <h2>Certifications</h2>
+                </div>
+                <div class="certifications-grid">
+                    <div class="cert-card" data-aos="fade-up">
+                        <div class="cert-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Certified Ethical Hacker (CEH)</h3>
+                        <p>EC-Council</p>
+                        <span class="cert-date">2023</span>
+                    </div>
+                    <!-- Add more certification cards -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section with Terminal Style -->
+        <section id="contact" class="section">
+            <div class="section-content">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="terminal-text">
+                        <span class="prompt">$</span>
+                        <span class="command">./contact.sh</span>
+                    </div>
+                    <h2>Get In Touch</h2>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-terminal" data-aos="fade-right">
+                        <div class="terminal-header">
+                            <div class="terminal-title">contact.sh</div>
+                            <div class="terminal-controls">
+                                <span class="control close"></span>
+                                <span class="control minimize"></span>
+                                <span class="control maximize"></span>
+                            </div>
+                        </div>
+                        <div class="terminal-content">
+                            <form class="contact-form">
+                                <div class="form-group">
+                                    <label><span class="prompt">$</span> Name:</label>
+                                    <input type="text" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="prompt">$</span> Email:</label>
+                                    <input type="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="prompt">$</span> Message:</label>
+                                    <textarea required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i> Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="contact-info" data-aos="fade-left">
+                        <div class="info-card">
+                            <i class="fab fa-github"></i>
+                            <h3>GitHub</h3>
+                            <a href="#">github.com/yourusername</a>
+                        </div>
+                        <div class="info-card">
+                            <i class="fab fa-linkedin"></i>
+                            <h3>LinkedIn</h3>
+                            <a href="#">linkedin.com/in/yourusername</a>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-envelope"></i>
+                            <h3>Email</h3>
+                            <a href="#">your.email@example.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer with Matrix Effect -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-title">system_status.sh</div>
+                    </div>
+                    <div class="terminal-content">
+                        <div class="status-line">
+                            <span class="prompt">$</span>
+                            <span class="command">echo "System Status: Online"</span>
+                        </div>
+                        <div class="status-line">
+                            <span class="prompt">$</span>
+                            <span class="command">echo "Last Updated: $(date)"</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Your Name. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="script.js"></script>
 </body>
 </html>
