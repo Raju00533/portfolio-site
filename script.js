@@ -133,17 +133,37 @@ if (navbar) {
     });
 }
 
-// Mobile menu toggle
+// Mobile Menu Functionality
 const mobileMenu = document.querySelector('.mobile-menu');
 const navLinks = document.querySelector('.nav-links');
-if (mobileMenu && navLinks) {
-    mobileMenu.addEventListener('click', () => {
-        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        if (navLinks.style.display === 'flex') {
-            navLinks.style.animation = 'slideDown 0.3s ease forwards';
+const navOverlay = document.createElement('div');
+navOverlay.classList.add('nav-overlay');
+document.body.appendChild(navOverlay);
+
+function toggleMobileMenu() {
+    navLinks.classList.toggle('active');
+    navOverlay.classList.toggle('active');
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+}
+
+mobileMenu.addEventListener('click', toggleMobileMenu);
+navOverlay.addEventListener('click', toggleMobileMenu);
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+            toggleMobileMenu();
         }
     });
-}
+});
+
+// Close mobile menu on window resize
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+        toggleMobileMenu();
+    }
+});
 
 // Smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
