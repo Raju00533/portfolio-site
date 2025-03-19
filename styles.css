@@ -996,3 +996,286 @@ body.menu-open {
     color: var(--text-color);
     margin-bottom: 1rem;
 }
+
+/* About Section Fixes */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 2rem;
+}
+
+.about-terminal {
+    width: 100%;
+    background: rgba(1, 22, 39, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-md);
+}
+
+.about-skills {
+    display: grid;
+    gap: 2rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Skills Section Fixes */
+.skills-section {
+    padding: 80px 0;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.skill-category {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.skill-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.skill-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Projects Section Fixes */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contact Section Fixes */
+.contact-section {
+    padding: 80px 0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 2rem;
+}
+
+.contact-info {
+    display: grid;
+    gap: 2rem;
+}
+
+/* Updated Media Queries */
+@media (max-width: 1200px) {
+    .about-grid,
+    .contact-grid {
+        gap: 2rem;
+    }
+
+    .skills-grid,
+    .projects-grid {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .about-terminal,
+    .contact-form {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-card {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-content {
+        width: 90%;
+        padding: 0 15px;
+    }
+
+    .about-terminal,
+    .contact-form {
+        width: 100%;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .skill-category {
+        padding: 1.5rem;
+    }
+
+    .skill-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .skill-bar-container {
+        height: 6px;
+    }
+
+    .projects-grid {
+        gap: 1.5rem;
+    }
+
+    .project-card {
+        width: 100%;
+    }
+
+    .contact-info {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section {
+        padding: 40px 0;
+    }
+
+    .section-content {
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    .about-terminal,
+    .skill-category,
+    .project-card,
+    .contact-form {
+        padding: 1rem;
+    }
+
+    .skill-tags {
+        gap: 0.5rem;
+    }
+
+    .tag {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    .project-header {
+        padding: 1rem;
+    }
+
+    .project-content {
+        padding: 1rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Fix for skill bars animation on mobile */
+@media (max-width: 768px) {
+    .skill-bar {
+        transition: width 0.5s ease;
+    }
+}
+
+/* Fix for project card hover on mobile */
+@media (hover: hover) {
+    .project-card:hover {
+        transform: translateY(-5px);
+    }
+}
+
+@media (hover: none) {
+    .project-card:active {
+        transform: translateY(-2px);
+    }
+}
+
+/* Fix for iOS Safari issues */
+@supports (-webkit-touch-callout: none) {
+    .about-terminal,
+    .skill-category,
+    .project-card {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+    }
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+    .skill-item,
+    .project-card,
+    .contact-form input,
+    .contact-form textarea,
+    .tag {
+        min-height: 44px;
+    }
+
+    .skill-category h3,
+    .project-header,
+    .contact-form label {
+        padding: 0.5rem 0;
+    }
+}
+
+/* Fix for backdrop-filter support */
+@supports not (backdrop-filter: blur(10px)) {
+    .about-terminal,
+    .skill-category,
+    .project-card {
+        background: rgba(1, 22, 39, 0.9);
+    }
+}
