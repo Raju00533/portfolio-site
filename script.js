@@ -4,11 +4,12 @@ window.addEventListener('load', () => {
     const mainContent = document.querySelector('.main-content');
     const lines = document.querySelectorAll('.terminal-content .line');
     
-    // Animate each line sequentially
+    // Animate each line sequentially with a typing effect
     lines.forEach((line, index) => {
         setTimeout(() => {
             line.style.opacity = '1';
-        }, index * 500);
+            line.style.transform = 'translateY(0)';
+        }, index * 400); // Reduced delay between lines for smoother experience
     });
 
     // Hide preloader and show main content after all lines are shown
@@ -19,42 +20,35 @@ window.addEventListener('load', () => {
         mainContent.style.opacity = '1';
         mainContent.style.visibility = 'visible';
         
-        // Initialize AOS after content is visible
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-    }, (lines.length * 500) + 1000);
+        // Trigger animations after content is visible
+        setTimeout(() => {
+            AOS.refresh();
+            document.querySelectorAll('[data-aos]').forEach(el => {
+                el.classList.add('aos-animate');
+            });
+        }, 100);
+    }, (lines.length * 400) + 800); // Adjusted timing based on number of lines
 });
 
 // Matrix Effect
-const canvas = document.getElementById('matrix');
-if (canvas) {
+function initMatrix() {
+    const canvas = document.getElementById('matrix');
+    if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-
-    resizeCanvas();
-
-    const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペ';
+    const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
     const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const nums = '0123456789';
     const alphabet = katakana + latin + nums;
 
     const fontSize = 16;
-    let columns = canvas.width / fontSize;
-    let rainDrops = Array(Math.floor(columns)).fill(1);
+    const columns = Math.floor(canvas.width / fontSize);
+    const rainDrops = Array(columns).fill(1);
 
-    function updateRainDrops() {
-        columns = canvas.width / fontSize;
-        rainDrops = Array(Math.floor(columns)).fill(1);
-    }
-
-    const draw = () => {
+    function draw() {
         ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -70,8 +64,9 @@ if (canvas) {
             }
             rainDrops[i]++;
         }
-    };
+    }
 
+    // Start animation
     let animationFrame;
     function animate() {
         draw();
@@ -79,16 +74,35 @@ if (canvas) {
     }
     animate();
 
-    // Handle window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            resizeCanvas();
-            updateRainDrops();
-        }, 250);
+    // Clean up on page unload
+    window.addEventListener('unload', () => {
+        cancelAnimationFrame(animationFrame);
     });
 }
+
+// Initialize matrix effect
+document.addEventListener('DOMContentLoaded', () => {
+    initMatrix();
+    
+    // Initialize AOS with simpler settings
+    AOS.init({
+        duration: 800,
+        easing: 'ease',
+        once: true,
+        offset: 100,
+        disable: 'mobile'
+    });
+});
+
+// Handle window resize for matrix effect
+window.addEventListener('resize', () => {
+    const canvas = document.getElementById('matrix');
+    if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initMatrix();
+    }
+});
 
 // Typed.js for hero section
 const typedElement = document.querySelector('.typed-text');
@@ -111,57 +125,24 @@ if (typedElement) {
     });
 }
 
-// Hero section parallax effect
+// Optimized parallax effect
 const hero = document.querySelector('.hero');
 if (hero) {
+    let ticking = false;
     window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * 0.5;
-        
-        if (scrolled < hero.offsetHeight) {
-            hero.style.transform = `translateY(${rate}px)`;
+        if (!ticking && window.innerWidth >= 992) {
+            window.requestAnimationFrame(() => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * 0.3;
+                
+                if (scrolled < hero.offsetHeight) {
+                    hero.style.transform = `translateY(${Math.min(rate, 100)}px)`;
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     });
-}
-
-// Optimize hero animations on mobile
-function optimizeForMobile() {
-    if (window.innerWidth <= 768) {
-        if (canvas) {
-            canvas.style.opacity = '0.1';
-        }
-    } else {
-        if (canvas) {
-            canvas.style.opacity = '0.15';
-        }
-    }
-}
-
-optimizeForMobile();
-window.addEventListener('resize', optimizeForMobile);
-
-// Terminal-style Command Execution
-document.querySelectorAll('.terminal-text').forEach(terminal => {
-    terminal.addEventListener('click', () => {
-        const command = terminal.querySelector('.command').textContent;
-        executeCommand(command);
-    });
-});
-
-function executeCommand(command) {
-    const terminal = document.createElement('div');
-    terminal.className = 'terminal-response';
-    terminal.innerHTML = `
-        <div class="prompt">$</div>
-        <div class="command">${command}</div>
-        <div class="response">Executing command...</div>
-    `;
-    
-    document.querySelector('.terminal-content').appendChild(terminal);
-    
-    setTimeout(() => {
-        terminal.querySelector('.response').textContent = 'Command executed successfully.';
-    }, 1000);
 }
 
 // Mobile Menu Functionality
@@ -174,14 +155,14 @@ document.body.appendChild(navOverlay);
 function toggleMobileMenu() {
     navLinks.classList.toggle('active');
     navOverlay.classList.toggle('active');
-    document.body.classList.toggle('menu-open');
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
     mobileMenu.setAttribute('aria-expanded', navLinks.classList.contains('active'));
 }
 
 function closeMobileMenu() {
     navLinks.classList.remove('active');
     navOverlay.classList.remove('active');
-    document.body.classList.remove('menu-open');
+    document.body.style.overflow = '';
     mobileMenu.setAttribute('aria-expanded', 'false');
 }
 
@@ -227,96 +208,86 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-// Handle window resize
-let resizeTimer;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-        if (window.innerWidth > 768) {
-            closeMobileMenu();
-        }
-        
-        // Update mobile height fix
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-        
-        // Update matrix canvas size
-        if (canvas) {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-    }, 250);
-});
-
-// Handle scroll for navbar
-let lastScroll = 0;
-const navbar = document.querySelector('.navbar');
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll <= 0) {
-        navbar.classList.remove('scrolled');
-        navbar.style.transform = 'translateY(0)';
-        return;
-    }
-    
-    if (currentScroll > lastScroll && !navLinks.classList.contains('active')) {
-        // Scrolling down & menu closed
-        navbar.style.transform = 'translateY(-100%)';
-    } else {
-        // Scrolling up or menu open
-        navbar.style.transform = 'translateY(0)';
-        navbar.classList.add('scrolled');
-    }
-    
-    lastScroll = currentScroll;
-});
-
 // Fix for iOS Safari 100vh issue
 function fixMobileHeight() {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-fixMobileHeight();
-window.addEventListener('resize', fixMobileHeight);
+// Debounced resize handler
+const debouncedResize = debounce(() => {
+    fixMobileHeight();
+    optimizeMatrixEffect();
+    
+    // Disable animations on mobile
+    if (window.innerWidth < 992) {
+        document.querySelectorAll('[data-aos]').forEach(el => {
+            el.removeAttribute('data-aos');
+        });
+    }
+}, 150);
 
-// Improve scroll performance
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
+window.addEventListener('resize', debouncedResize);
 
-// Improve scroll performance
+// Optimize scroll performance
 const debouncedScroll = debounce(() => {
     requestAnimationFrame(() => {
         const scrolled = window.pageYOffset;
+        const navbar = document.querySelector('.navbar');
         
-        // Update navbar
         if (scrolled > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-        
-        // Update animations
-        document.querySelectorAll('[data-aos]').forEach(element => {
-            if (element.getBoundingClientRect().top < window.innerHeight * 0.75) {
-                element.classList.add('aos-animate');
-            }
-        });
     });
 }, 15);
 
 window.addEventListener('scroll', debouncedScroll);
+
+// Matrix Effect Optimization
+function optimizeMatrixEffect() {
+    const canvas = document.getElementById('matrix');
+    if (!canvas) return;
+
+    const isMobile = window.innerWidth <= 768;
+    canvas.style.opacity = isMobile ? '0.1' : '0.15';
+    
+    if (isMobile) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        // Reduce the number of drops on mobile
+        updateRainDrops(Math.floor(canvas.width / 32));
+    } else {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        updateRainDrops(Math.floor(canvas.width / 16));
+    }
+}
+
+// Terminal-style Command Execution
+document.querySelectorAll('.terminal-text').forEach(terminal => {
+    terminal.addEventListener('click', () => {
+        const command = terminal.querySelector('.command').textContent;
+        executeCommand(command);
+    });
+});
+
+function executeCommand(command) {
+    const terminal = document.createElement('div');
+    terminal.className = 'terminal-response';
+    terminal.innerHTML = `
+        <div class="prompt">$</div>
+        <div class="command">${command}</div>
+        <div class="response">Executing command...</div>
+    `;
+    
+    document.querySelector('.terminal-content').appendChild(terminal);
+    
+    setTimeout(() => {
+        terminal.querySelector('.response').textContent = 'Command executed successfully.';
+    }, 1000);
+}
 
 // Project filtering with terminal animation
 const filterButtons = document.querySelectorAll('.filter-btn');
