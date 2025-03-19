@@ -33,8 +33,12 @@ const canvas = document.getElementById('matrix');
 if (canvas) {
     const ctx = canvas.getContext('2d');
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    resizeCanvas();
 
     const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペ';
     const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -42,12 +46,12 @@ if (canvas) {
     const alphabet = katakana + latin + nums;
 
     const fontSize = 16;
-    const columns = canvas.width / fontSize;
+    let columns = canvas.width / fontSize;
+    let rainDrops = Array(Math.floor(columns)).fill(1);
 
-    const rainDrops = [];
-
-    for (let i = 0; i < columns; i++) {
-        rainDrops[i] = 1;
+    function updateRainDrops() {
+        columns = canvas.width / fontSize;
+        rainDrops = Array(Math.floor(columns)).fill(1);
     }
 
     const draw = () => {
@@ -68,12 +72,21 @@ if (canvas) {
         }
     };
 
-    setInterval(draw, 30);
+    let animationFrame;
+    function animate() {
+        draw();
+        animationFrame = requestAnimationFrame(animate);
+    }
+    animate();
 
     // Handle window resize
+    let resizeTimeout;
     window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            resizeCanvas();
+            updateRainDrops();
+        }, 250);
     });
 }
 
@@ -91,9 +104,41 @@ if (typedElement) {
         typeSpeed: 50,
         backSpeed: 30,
         backDelay: 2000,
-        loop: true
+        loop: true,
+        showCursor: true,
+        cursorChar: '|',
+        autoInsertCss: true
     });
 }
+
+// Hero section parallax effect
+const hero = document.querySelector('.hero');
+if (hero) {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * 0.5;
+        
+        if (scrolled < hero.offsetHeight) {
+            hero.style.transform = `translateY(${rate}px)`;
+        }
+    });
+}
+
+// Optimize hero animations on mobile
+function optimizeForMobile() {
+    if (window.innerWidth <= 768) {
+        if (canvas) {
+            canvas.style.opacity = '0.1';
+        }
+    } else {
+        if (canvas) {
+            canvas.style.opacity = '0.15';
+        }
+    }
+}
+
+optimizeForMobile();
+window.addEventListener('resize', optimizeForMobile);
 
 // Terminal-style Command Execution
 document.querySelectorAll('.terminal-text').forEach(terminal => {
