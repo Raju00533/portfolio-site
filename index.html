@@ -1,502 +1,450 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raju Ghimire</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raju Ghimire | DevOps Engineer & Cyber Security MSc</title>
+<meta name="description" content="Portfolio of Raju Ghimire: DevOps engineer with 3+ years across AWS, Docker, Kubernetes, Terraform and CI/CD, and a recent MSc Cyber Security graduate based in London.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230c1220'/><text x='50' y='68' font-size='54' text-anchor='middle' fill='%23ffb347' font-family='monospace' font-weight='700'>&gt;_</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  try { var t = localStorage.getItem('theme');
+    if (t ? t === 'light' : matchMedia('(prefers-color-scheme: light)').matches) document.documentElement.classList.remove('dark');
+  } catch (e) {}
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: { extend: {
+      fontFamily: {
+        display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+        sans: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+      },
+      colors: { bg: 'var(--bg)', surface: 'var(--surface)', ink: 'var(--ink)', mute: 'var(--mute)', line: 'var(--line)', acc: 'var(--acc)', acc2: 'var(--acc2)' }
+    } }
+  };
+</script>
+<style>
+  :root { --bg:#f4f6fa; --surface:#ffffff; --ink:#101828; --mute:#566179; --line:#d9dfeb; --acc:#b45309; --acc2:#0f766e; --glow:rgba(180,83,9,.10); }
+  .dark { --bg:#0c1220; --surface:#141c2e; --ink:#e8ecf5; --mute:#93a0ba; --line:#243049; --acc:#ffb347; --acc2:#4fd1c5; --glow:rgba(255,179,71,.10); }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { background: var(--bg); color: var(--ink); transition: background-color .3s, color .3s; }
+  .grid-bg { background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: radial-gradient(ellipse at 70% 20%, #000 0%, transparent 65%); mask-image: radial-gradient(ellipse at 70% 20%, #000 0%, transparent 65%); opacity:.45; }
+  .term { background:#080d18; color:#d6deeb; border:1px solid #243049; }
+  .term .p { color:#ffb347 } .term .g { color:#4fd1c5 } .term .m { color:#8794ad } .term .w { color:#f5f7fb }
+  .term a { color:#4fd1c5; text-decoration: underline; text-underline-offset:3px }
+  #out::-webkit-scrollbar { width:8px } #out::-webkit-scrollbar-thumb { background:#243049; border-radius:8px }
+  .caret { display:inline-block; width:.55em; height:1.05em; background:#ffb347; vertical-align:-.15em; animation: blink 1s steps(2) infinite }
+  @keyframes blink { to { visibility:hidden } }
+  .hero-in > * { opacity:0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards }
+  .hero-in > *:nth-child(2){animation-delay:.12s} .hero-in > *:nth-child(3){animation-delay:.24s} .hero-in > *:nth-child(4){animation-delay:.36s} .hero-in > *:nth-child(5){animation-delay:.48s}
+  @keyframes rise { to { opacity:1; transform:none } }
+  .chip { border:1px solid var(--line); background: var(--surface); }
+  .tab-on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .nav-on { color: var(--acc); }
+  .tl::before { content:""; position:absolute; left:7px; top:6px; bottom:0; width:2px; background: var(--line); }
+  .focus-ring:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline:2px solid var(--acc2); outline-offset:3px; border-radius:6px }
+  .cert-img { aspect-ratio: 4/3; object-fit: contain; object-position: center; background:#fff; }
+  @media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto} .hero-in > *{animation:none;opacity:1;transform:none} .caret{animation:none} * {transition:none !important} }
+</style>
 </head>
-<body>
-    <!-- Terminal-style Preloader -->
-    <div class="preloader">
-        <div class="terminal">
-            <div class="terminal-header">
-                <div class="terminal-title">System Initialization</div>
-                <div class="terminal-controls">
-                    <span class="control close"></span>
-                    <span class="control minimize"></span>
-                    <span class="control maximize"></span>
-                </div>
-            </div>
-            <div class="terminal-content">
-                <div class="line">$ Initializing system components...</div>
-                <div class="line">$ Running security checks...</div>
-                <div class="line">$ Loading portfolio assets...</div>
-                <div class="line">$ Welcome to my digital workspace!</div>
-                <div class="line">$ I'm Raju Ghimire, a DevOps Engineer & Security Researcher</div>
-                <div class="line">$ Preparing an immersive experience for you...</div>
-                <div class="line">$ System ready. Launching interface...</div>
-            </div>
-        </div>
+<body class="font-sans antialiased">
+<div id="progress" class="fixed top-0 left-0 h-[3px] bg-acc z-[70]" style="width:0"></div>
+
+<!-- Header -->
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md border-b border-line" style="background:color-mix(in srgb, var(--bg) 82%, transparent)">
+  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#home" class="font-display font-extrabold text-lg tracking-tight">raju<span class="text-acc">.</span>ghimire</a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium" id="nav">
+      <a href="#about" class="hover:text-acc transition">About</a>
+      <a href="#skills" class="hover:text-acc transition">Skills</a>
+      <a href="#experience" class="hover:text-acc transition">Experience</a>
+      <a href="#projects" class="hover:text-acc transition">Projects</a>
+      <a href="#certifications" class="hover:text-acc transition">Certificates</a>
+      <a href="#contact" class="hover:text-acc transition">Contact</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <button id="themeBtn" aria-label="Switch between dark and light theme" class="w-10 h-10 rounded-full chip grid place-items-center hover:border-acc transition">
+        <svg class="w-5 h-5 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="w-5 h-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button id="menuBtn" aria-label="Open menu" aria-expanded="false" class="md:hidden w-10 h-10 rounded-full chip grid place-items-center">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileNav" class="hidden md:hidden border-t border-line px-5 py-3 flex-col gap-1 text-base">
+    <a href="#about" class="py-2">About</a><a href="#skills" class="py-2">Skills</a><a href="#experience" class="py-2">Experience</a><a href="#projects" class="py-2">Projects</a><a href="#certifications" class="py-2">Certificates</a><a href="#contact" class="py-2">Contact</a>
+  </div>
+</header>
+
+<main>
+<!-- Hero -->
+<section id="home" class="relative overflow-hidden pt-28 md:pt-32 pb-20">
+  <div class="grid-bg absolute inset-0 pointer-events-none"></div>
+  <div class="absolute -top-24 -right-24 w-[34rem] h-[34rem] rounded-full pointer-events-none" style="background:radial-gradient(circle, var(--glow), transparent 70%)"></div>
+  <div class="relative max-w-6xl mx-auto px-5 grid lg:grid-cols-[1.05fr_1fr] gap-12 items-center">
+    <div class="hero-in">
+      <p class="inline-flex items-center gap-2 chip rounded-full px-3 py-1.5 text-sm text-mute"><span class="w-2 h-2 rounded-full bg-acc2 animate-pulse"></span>MSc Cyber Security graduate, London</p>
+      <h1 class="font-display font-extrabold tracking-tight leading-[0.95] text-5xl sm:text-6xl lg:text-7xl mt-6">Raju<br>Ghimire</h1>
+      <p class="mt-5 text-xl sm:text-2xl font-display font-medium text-mute"><span id="typed" class="text-ink"></span><span class="caret"></span></p>
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-mute">I build and run cloud and Linux infrastructure, automate delivery pipelines and containerise applications. With 3+ years in DevOps and a security-focused MSc, I aim for systems that ship fast and stay safe.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#projects" class="px-6 py-3 rounded-full bg-acc text-bg font-semibold hover:opacity-90 transition" style="color:var(--bg)">See my projects</a>
+        <a href="#contact" class="px-6 py-3 rounded-full chip font-semibold hover:border-acc transition">Get in touch</a>
+      </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Matrix-style Navbar -->
-        <nav class="navbar">
-            <div class="logo">
-                <div class="logo-terminal">
-                    <span class="prompt">$</span>
-                    <span class="command">whoami</span>
-                </div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active"><i class="fas fa-terminal"></i> Home</a></li>
-                <li><a href="#about"><i class="fas fa-user-secret"></i> About</a></li>
-                <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
-                <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                <li><a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li><a href="#blog"><i class="fas fa-blog"></i> Blog</a></li>
-            </ul>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
-
-        <!-- Hero Section with Matrix Effect -->
-        <section id="home" class="hero">
-            <canvas id="matrix"></canvas>
-            <div class="hero-content">
-                <div class="hero-text" data-aos="fade-right">
-                    <div class="terminal-text">
-                        <span class="prompt">$</span>
-                        <span class="command">echo "Hello, World! I'm Raju Ghimire"</span>
-                    </div>
-                    <h1>DevOps Engineer & Cybersecurity Researcher</h1>
-                    <div class="typing-text">
-                        <span class="typed-text"></span>
-                        <span class="cursor">|</span>
-                    </div>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">
-                            <i class="fas fa-code-branch"></i> View Projects
-                        </a>
-                        <a href="#contact" class="btn btn-outline">
-                            <i class="fas fa-shield-alt"></i> Contact Me
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-stats" data-aos="fade-left">
-                    <div class="stat-card">
-                        <i class="fas fa-server"></i>
-                        <span class="number">15+</span>
-                        <span class="label">Infrastructure Deployments</span>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-shield-virus"></i>
-                        <span class="number">10+</span>
-                        <span class="label">Security Assessments</span>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-cloud"></i>
-                        <span class="number">3+</span>
-                        <span class="label">Cloud Platforms</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section with Terminal Style -->
-        <section id="about" class="section">
-            <div class="section-content">
-                <div class="section-header" data-aos="fade-up">
-                    <div class="terminal-text">
-                        <span class="prompt">$</span>
-                        <span class="command">cat about.txt</span>
-                    </div>
-                    <h2>About Me</h2>
-                </div>
-                <div class="about-grid">
-                    <div class="about-terminal" data-aos="fade-right">
-                        <div class="terminal-header">
-                            <div class="terminal-title">about.txt</div>
-                            <div class="terminal-controls">
-                                <span class="control close"></span>
-                                <span class="control minimize"></span>
-                                <span class="control maximize"></span>
-                            </div>
-                        </div>
-                        <div class="terminal-content">
-                            <p>I am a DevOps Engineer with a passion for cybersecurity and cloud automation. Currently pursuing MSc Cybersecurity, I specialize in:</p>
-                            <ul>
-                                <li>Cloud Infrastructure Automation</li>
-                                <li>Linux System Administration</li>
-                                <li>Offensive Security</li>
-                                <li>DevOps Practices</li>
-                                <li>Security Automation</li>
-                                <li>Zero Trust Architecture</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="about-skills" data-aos="fade-left">
-                        <div class="skill-category">
-                            <h3>DevOps</h3>
-                            <div class="skill-tags">
-                                <span class="tag">Docker</span>
-                                <span class="tag">Kubernetes</span>
-                                <span class="tag">Jenkins</span>
-                                <span class="tag">Github Actions</span>
-                                <span class="tag">Ansible</span>
-                                <span class="tag">Prometheus & Grafana</span>
-                                <span class="tag">Terraform</span>
-                                <span class="tag">Dns Management</span>
-                            </div>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Cloud</h3>
-                            <div class="skill-tags">
-                                <span class="tag">AWS</span>
-                                <span class="tag">Azure</span>
-                                <span class="tag">GCP</span>
-                            </div>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Security</h3>
-                            <div class="skill-tags">
-                                <span class="tag">Penetration Testing</span>
-                                <span class="tag">Kali Linux</span>
-                                <span class="tag">Metasploit</span>
-                                <span class="tag">Burp Suite</span>
-                                <span class="tag">Nessus</span>
-                                <span class="tag">Nmap</span>
-                                <span class="tag">Wireshark</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Add this section after the About section -->
-        <section id="skills" class="section skills-section">
-            <div class="section-content">
-                <div class="section-header" data-aos="fade-up">
-                    <div class="terminal-text">
-                        <span class="prompt">$</span>
-                        <span class="command">ls ./skills/</span>
-                    </div>
-                    <h2>Technical Skills</h2>
-                </div>
-                <div class="skills-grid">
-                    <div class="skill-category" data-aos="fade-up">
-                        <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <i class="fab fa-aws"></i>
-                                <span>AWS</span>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fab fa-docker"></i>
-                                <span>Docker</span>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="width: 95%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fas fa-dharmachakra"></i>
-                                <span>Kubernetes</span>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="width: 60%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fas fa-code-branch"></i>
-                                <span>CI/CD</span>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="width: 88%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-                        <h3><i class="fas fa-shield-alt"></i> Security</h3>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <i class="fas fa-bug"></i>
-                                <span>Penetration Testing</span>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fas fa-lock"></i>
-                                <span>Security Automation</span>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fas fa-shield-virus"></i>
-                                <span>Vulnerability Assessment</span>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="width: 88%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fas fa-network-wired"></i>
-                                <span>Network Security</span>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="width: 80%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
-                        <h3><i class="fas fa-terminal"></i> Systems</h3>
-                        <div class="skill-list">
-                            <div class="skill-item">
-                                <i class="fab fa-linux"></i>
-                                <span>Linux System Administration</span>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="width: 92%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fas fa-server"></i>
-                                <span>System Architecture & Design</span>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fas fa-code"></i>
-                                <span>Shell Scripting</span>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="width: 88%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fas fa-cogs"></i>
-                                <span>Automation</span>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="width: 90%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section with Interactive Cards -->
-        <section id="projects" class="section">
-            <div class="section-content">
-                <div class="section-header" data-aos="fade-up">
-                    <div class="terminal-text">
-                        <span class="prompt">$</span>
-                        <span class="command">ls projects/</span>
-                    </div>
-                    <h2>Featured Projects</h2>
-                </div>
-                <div class="projects-grid">
-                    <div class="project-card" data-aos="fade-up" data-category="devops">
-                        <div class="project-header">
-                            <i class="fas fa-server"></i>
-                            <h3>Infrastructure as Code</h3>
-                        </div>
-                        <div class="project-content">
-                            <p>Automated cloud infrastructure deployment using Terraform and AWS CloudFormation.</p>
-                            <div class="tech-stack">
-                                <span>Terraform</span>
-                                <span>AWS</span>
-                                <span>Docker</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="github-link"><i class="fab fa-github"></i> Code</a>
-                                <a href="#" class="demo-link"><i class="fas fa-external-link-alt"></i> Demo</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add more project cards -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Blog Section -->
-        <section id="blog" class="blog-section">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <h2 class="section-title">Latest Blog Posts</h2>
-                    <p class="section-subtitle">Insights, Tutorials & Tech Thoughts</p>
-                </div>
-                
-                <div class="blog-grid">
-                    <!-- Blog Post 1 -->
-                    <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="blog-image">
-                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="DevOps Best Practices">
-                            <div class="blog-category">DevOps</div>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span><i class="far fa-calendar"></i> March 15, 2024</span>
-                                <span><i class="far fa-clock"></i> 5 min read</span>
-                            </div>
-                            <h3 class="blog-title">Essential DevOps Practices for Modern Development</h3>
-                            <p class="blog-excerpt">Learn about the fundamental practices that make DevOps successful in today's fast-paced development environment.</p>
-                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- Blog Post 2 -->
-                    <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="blog-image">
-                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cybersecurity">
-                            <div class="blog-category">Security</div>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span><i class="far fa-calendar"></i> March 10, 2024</span>
-                                <span><i class="far fa-clock"></i> 7 min read</span>
-                            </div>
-                            <h3 class="blog-title">Cybersecurity Trends in 2024</h3>
-                            <p class="blog-excerpt">Explore the latest trends and threats in cybersecurity, and how to protect your systems against them.</p>
-                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-
-                    <!-- Blog Post 3 -->
-                    <article class="blog-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="blog-image">
-                            <img src="https://images.unsplash.com/photo-1461749280684-dccba630ec2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cloud Computing">
-                            <div class="blog-category">Cloud</div>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span><i class="far fa-calendar"></i> March 5, 2024</span>
-                                <span><i class="far fa-clock"></i> 6 min read</span>
-                            </div>
-                            <h3 class="blog-title">Cloud Computing: A Beginner's Guide</h3>
-                            <p class="blog-excerpt">A comprehensive guide to understanding cloud computing concepts and getting started with cloud services.</p>
-                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certifications Section -->
-        <section id="certifications" class="section">
-            <div class="section-content">
-                <div class="section-header" data-aos="fade-up">
-                    <div class="terminal-text">
-                        <span class="prompt">$</span>
-                        <span class="command">cat certifications.txt</span>
-                    </div>
-                    <h2>Certifications</h2>
-                </div>
-                <div class="certifications-grid">
-                    <div class="cert-card" data-aos="fade-up">
-                        <div class="cert-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3>Certified Ethical Hacker (CEH)</h3>
-                        <p>EC-Council</p>
-                        <span class="cert-date">2023</span>
-                    </div>
-                    <!-- Add more certification cards -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section with Terminal Style -->
-        <section id="contact" class="section">
-            <div class="section-content">
-                <div class="section-header" data-aos="fade-up">
-                    <div class="terminal-text">
-                        <span class="prompt">$</span>
-                        <span class="command">./contact.sh</span>
-                    </div>
-                    <h2>Get In Touch</h2>
-                </div>
-                <div class="contact-container">
-                    <div class="contact-terminal" data-aos="fade-right">
-                        <div class="terminal-header">
-                            <div class="terminal-title">contact.sh</div>
-                            <div class="terminal-controls">
-                                <span class="control close"></span>
-                                <span class="control minimize"></span>
-                                <span class="control maximize"></span>
-                            </div>
-                        </div>
-                        <div class="terminal-content">
-                            <form class="contact-form">
-                                <div class="form-group">
-                                    <label><span class="prompt">$</span> Name:</label>
-                                    <input type="text" required>
-                                </div>
-                                <div class="form-group">
-                                    <label><span class="prompt">$</span> Email:</label>
-                                    <input type="email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label><span class="prompt">$</span> Message:</label>
-                                    <textarea required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-paper-plane"></i> Send Message
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="contact-info" data-aos="fade-left">
-                        <div class="info-card">
-                            <i class="fab fa-github"></i>
-                            <h3>GitHub</h3>
-                            <a href="https://github.com/Raju00533">github.com/Raju00533</a>
-                        </div>
-                        <div class="info-card">
-                            <i class="fab fa-linkedin"></i>
-                            <h3>LinkedIn</h3>
-                            <a href="https://np.linkedin.com/in/raju-g-690708250">linkedin.com/Raju G.</a>
-                        </div>
-                        <div class="info-card">
-                            <i class="fas fa-envelope"></i>
-                            <h3>Email</h3>
-                            <a href="#">raju987ghimire@gmail.com</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer with Matrix Effect -->
-        <footer>
-            <div class="footer-content">
-                <div class="footer-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-title">system_status.sh</div>
-                    </div>
-                    <div class="terminal-content">
-                        <div class="status-line">
-                            <span class="prompt">$</span>
-                            <span class="command">echo "System Status: Online"</span>
-                        </div>
-                        <div class="status-line">
-                            <span class="prompt">$</span>
-                            <span class="command">echo "Last Updated: $(date)"</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2024 Raju Ghimire. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+    <!-- Interactive terminal -->
+    <div class="term rounded-2xl shadow-2xl overflow-hidden font-mono text-[13px] sm:text-sm" id="terminal" aria-label="Interactive terminal. Type help to see commands.">
+      <div class="flex items-center gap-2 px-4 py-3 border-b" style="border-color:#243049;background:#0d1424">
+        <span class="w-3 h-3 rounded-full bg-[#ff5f57]"></span><span class="w-3 h-3 rounded-full bg-[#febc2e]"></span><span class="w-3 h-3 rounded-full bg-[#28c840]"></span>
+        <span class="ml-3 text-xs m" style="color:#8794ad">raju@portfolio: ~</span>
+      </div>
+      <div id="out" class="px-4 pt-4 h-72 overflow-y-auto leading-relaxed" aria-live="polite"></div>
+      <div class="px-4 pb-2 flex items-center gap-2">
+        <label for="cmd" class="p whitespace-nowrap" style="color:#ffb347">raju@portfolio:~$</label>
+        <input id="cmd" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" class="flex-1 bg-transparent outline-none min-w-0 text-[#f5f7fb]" placeholder="type help" style="outline:none">
+      </div>
+      <div class="px-4 pb-4 pt-2 flex flex-wrap gap-2" id="chips"></div>
     </div>
+  </div>
+</section>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="script.js"></script>
+<!-- About -->
+<section id="about" class="py-20 border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-[1fr_1.4fr] gap-12">
+    <div>
+      <h2 class="font-display font-extrabold text-4xl tracking-tight">About me</h2>
+      <p class="mt-3 text-mute font-mono text-sm">~/about</p>
+    </div>
+    <div class="space-y-5 text-lg leading-relaxed text-mute">
+      <p>I'm a DevOps engineer with 3+ years of hands-on experience supporting Linux and cloud infrastructure, building CI/CD pipelines, containerising applications and troubleshooting production systems. My deepest cloud experience is on <span class="text-ink font-medium">AWS</span>, with practical work across GCP and Azure.</p>
+      <p>I've just completed an <span class="text-ink font-medium">MSc in Cyber Security</span> at the University of the West of Scotland (London campus). It sharpened what I already cared about: secure access control, monitoring and detection built into delivery rather than bolted on.</p>
+      <div class="grid sm:grid-cols-3 gap-4 pt-4" id="facts"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="py-20 border-t border-line">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="font-display font-extrabold text-4xl tracking-tight">Skills</h2>
+    <p class="mt-3 text-mute max-w-xl">Pick an area to see the tools I use and how I use them.</p>
+    <div class="mt-8 flex flex-wrap gap-2" id="skillTabs" role="tablist"></div>
+    <div class="mt-6 chip rounded-2xl p-6 sm:p-8" id="skillPanel" role="tabpanel"></div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience" class="py-20 border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-[1fr_1.6fr] gap-12">
+    <div>
+      <h2 class="font-display font-extrabold text-4xl tracking-tight">Experience</h2>
+      <p class="mt-3 text-mute">Click a role to expand the details.</p>
+      <h3 class="font-display font-bold text-xl mt-10">Education</h3>
+      <ul class="mt-4 space-y-4 text-mute">
+        <li><span class="block text-ink font-semibold">MSc Cyber Security</span>University of the West of Scotland, London<br><span class="text-sm">2025 to 2026</span></li>
+        <li><span class="block text-ink font-semibold">BSc Information Technology</span>LBEF Campus / Asia Pacific University, Kathmandu<br><span class="text-sm">2020 to 2023</span></li>
+      </ul>
+    </div>
+    <div class="relative tl pl-8 space-y-6" id="timeline"></div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="py-20 border-t border-line">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="font-display font-extrabold text-4xl tracking-tight">Projects</h2>
+    <p class="mt-3 text-mute max-w-xl">Select a project to read what I built and which tools were involved.</p>
+    <div class="mt-8 grid lg:grid-cols-[.9fr_1.4fr] gap-6">
+      <div class="flex lg:flex-col gap-2 overflow-x-auto pb-1" id="projList" role="tablist"></div>
+      <div class="chip rounded-2xl p-6 sm:p-8 min-h-[18rem]" id="projPanel" role="tabpanel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Certificates -->
+<section id="certifications" class="py-20 border-t border-line">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="font-display font-extrabold text-4xl tracking-tight">Certificates</h2>
+    <p class="mt-3 text-mute max-w-xl">Ten completed courses. Click any certificate to view it full size.</p>
+    <div class="mt-8 flex flex-wrap gap-2" id="certFilters"></div>
+    <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="certGrid"></div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-20 border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-[1fr_1.2fr] gap-12">
+    <div>
+      <h2 class="font-display font-extrabold text-4xl tracking-tight">Let's talk</h2>
+      <p class="mt-4 text-lg text-mute max-w-md">I'm looking for DevOps, cloud and security-minded engineering roles. Send a message and I'll reply as soon as I can.</p>
+      <div class="mt-8 space-y-3">
+        <button id="copyMail" class="w-full text-left chip rounded-xl px-5 py-4 hover:border-acc transition flex items-center justify-between gap-3"><span><span class="block text-sm text-mute">Email (click to copy)</span><span class="font-semibold">raju12ghimire@gmail.com</span></span><span class="text-acc text-sm">Copy</span></button>
+        <a href="https://github.com/Raju00533" target="_blank" rel="noopener" class="block chip rounded-xl px-5 py-4 hover:border-acc transition"><span class="block text-sm text-mute">GitHub</span><span class="font-semibold">github.com/Raju00533</span></a>
+        <a href="https://www.linkedin.com/in/raju-690708250/" target="_blank" rel="noopener" class="block chip rounded-xl px-5 py-4 hover:border-acc transition"><span class="block text-sm text-mute">LinkedIn</span><span class="font-semibold">Raju G.</span></a>
+      </div>
+    </div>
+    <form id="form" class="chip rounded-2xl p-6 sm:p-8 space-y-5" novalidate>
+      <div><label for="fn" class="text-sm font-medium">Your name</label><input id="fn" required class="mt-1.5 w-full rounded-lg border border-line bg-bg px-4 py-3" autocomplete="name"></div>
+      <div><label for="fe" class="text-sm font-medium">Your email</label><input id="fe" type="email" required class="mt-1.5 w-full rounded-lg border border-line bg-bg px-4 py-3" autocomplete="email"></div>
+      <div><label for="fm" class="text-sm font-medium">Message</label><textarea id="fm" rows="5" required class="mt-1.5 w-full rounded-lg border border-line bg-bg px-4 py-3"></textarea></div>
+      <p id="formErr" class="text-sm text-[#e5484d] hidden" role="alert"></p>
+      <button class="px-6 py-3 rounded-full bg-acc font-semibold hover:opacity-90 transition" style="color:var(--bg)">Open in my email app</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-line py-8 text-center text-sm text-mute">
+  <p>© <span id="yr"></span> Raju Ghimire. Built with HTML, Tailwind CSS and JavaScript.</p>
+</footer>
+
+<!-- Lightbox -->
+<div id="lb" class="fixed inset-0 z-[80] hidden items-center justify-center p-4" style="background:rgba(5,8,16,.9)" role="dialog" aria-modal="true" aria-label="Certificate viewer">
+  <button id="lbClose" class="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/10 text-white text-2xl" aria-label="Close">×</button>
+  <button id="lbPrev" class="absolute left-3 sm:left-6 w-11 h-11 rounded-full bg-white/10 text-white text-xl" aria-label="Previous certificate">‹</button>
+  <button id="lbNext" class="absolute right-3 sm:right-6 w-11 h-11 rounded-full bg-white/10 text-white text-xl" aria-label="Next certificate">›</button>
+  <figure class="max-w-4xl w-full text-center">
+    <img id="lbImg" alt="" class="mx-auto max-h-[75vh] rounded-lg bg-white">
+    <figcaption class="mt-4 text-white"><span id="lbCap" class="font-semibold"></span><a id="lbVerify" target="_blank" rel="noopener" class="ml-3 text-sm underline" style="color:#4fd1c5">Verify online</a></figcaption>
+  </figure>
+</div>
+
+<!-- Back to top -->
+<button id="toTop" aria-label="Back to top" class="fixed bottom-6 right-6 z-[60] w-12 h-12 rounded-full bg-acc shadow-lg grid place-items-center translate-y-20 opacity-0 transition-all duration-300" style="color:var(--bg)">
+  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] px-5 py-3 rounded-full bg-ink text-bg text-sm font-medium opacity-0 pointer-events-none transition" style="background:var(--ink);color:var(--bg)"></div>
+
+<script>
+/* ---------- Data ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const CV = {
+  skills: {
+    'Cloud': { note: 'Strongest depth is AWS compute, networking and Linux administration, with practical GCP and Azure work.', items: ['AWS EC2', 'S3', 'IAM', 'VPC', 'CloudWatch', 'GCP', 'Azure'] },
+    'CI/CD': { note: 'Pipelines for repeatable builds and deployments that reduce manual release steps.', items: ['Jenkins', 'GitHub Actions', 'Git', 'Release automation', 'Pipeline design'] },
+    'Containers & IaC': { note: 'Repeatable environments from a laptop to production.', items: ['Docker', 'Docker Compose', 'Kubernetes', 'Terraform', 'Ansible'] },
+    'Linux & Networking': { note: 'Server administration and the networking underneath it.', items: ['Linux', 'NGINX', 'SSH', 'TCP/IP', 'DNS', 'Reverse proxy'] },
+    'Monitoring': { note: 'Metrics and logs used to find the cause of problems fast.', items: ['Prometheus', 'Grafana', 'ELK Stack', 'Zabbix', 'Log analysis', 'Incident troubleshooting'] },
+    'Security': { note: 'Studied through my MSc and hands-on labs.', items: ['Kali Linux', 'Metasploit', 'Burp Suite', 'Nessus', 'Nmap', 'Wireshark', 'auditd'] },
+    'Scripting': { note: 'Automation of recurring infrastructure and operations tasks.', items: ['Bash', 'Python'] }
+  },
+  jobs: [
+    { role: 'Mid-DevOps Engineer / System Administrator', org: 'ThemeGrill, Nepal', when: 'Sep 2024 to Aug 2025', pts: ['Managed Docker-based application environments and automated provisioning for WordPress deployments, keeping development and deployment consistent.', 'Built and maintained Jenkins and GitHub Actions pipelines for repeatable builds and deployments.', 'Administered and troubleshot Linux servers, application services and networking issues using logs and monitoring data.', 'Automated recurring infrastructure and deployment tasks with Bash and Terraform.'] },
+    { role: 'DevOps Engineer', org: 'OASYS IT Solutions Pvt. Ltd., Nepal', when: 'Sep 2022 to Aug 2024', pts: ['Supported development and production infrastructure across Linux-based environments.', 'Worked with AWS and GCP workloads, mostly AWS compute, networking and Linux administration.', 'Containerised applications with Docker and supported CI/CD workflows with Jenkins and GitHub Actions.', 'Ran monitoring and alerting with Prometheus, Grafana and ELK Stack.', 'Contributed to a Microsoft SQL Server to PostgreSQL migration: data movement, validation and continuity.'] },
+    { role: 'Earlier experience', org: 'Cloud Sewa NP, Leapfrog, RemoteCoach.fit', when: 'Internships and project work', pts: ['Cloud Sewa NP (DevOps Intern): supported Linux and cloud operations and deployment tasks.', 'Leapfrog (DevOps Intern): automation, containers, Git and cloud-oriented workflows.', 'RemoteCoach.fit (Cloud / DevOps project work): GCP, Docker and Git in a cloud-based application.'] }
+  ],
+  projects: [
+    { name: 'AWS EC2 OpenVPN', tags: ['AWS EC2', 'Linux', 'Networking'], text: 'Deployed and configured OpenVPN on an EC2 instance, working through security groups, SSH access and Linux configuration to give secure remote connectivity.' },
+    { name: 'Containerised WordPress Delivery', tags: ['Docker', 'Jenkins', 'GitHub Actions', 'Terraform'], text: 'Built repeatable Docker-based WordPress environments and connected provisioning with CI/CD automation, so every release followed the same path.' },
+    { name: 'MSSQL to PostgreSQL Migration', tags: ['Database migration', 'Linux', 'PostgreSQL'], text: 'Supported the migration of a Microsoft SQL Server workload to PostgreSQL, covering data movement, validation and continuity considerations.' },
+    { name: 'Privilege Escalation Detection Lab', tags: ['Ubuntu', 'Ansible', 'auditd', 'Python', 'VirtualBox'], text: 'Built an isolated multi-VM Linux environment, automated its configuration with Ansible and collected audit and authentication telemetry to analyse security events.' }
+  ],
+  certs: [
+    { t: 'AWS Academy Cloud Architecting', by: 'AWS Academy', d: 'Jun 2023', c: 'Cloud', f: 'aws-cloud-architecting.png', v: 'https://www.credly.com/go/DTjWb2mJ' },
+    { t: 'AWS Academy Cloud Foundations', by: 'AWS Academy', d: 'Apr 2023', c: 'Cloud', f: 'aws-cloud-foundations.png', v: 'https://www.credly.com/go/Mi565NzO' },
+    { t: 'Ethical Hacking Essentials (EHE)', by: 'EC-Council via Coursera', d: 'Jul 2023', c: 'Security', f: 'ec-council-ethical-hacking-essentials.png', v: 'https://coursera.org/verify/63DPBXHKE4WJ' },
+    { t: 'Foundations of Cybersecurity', by: 'Google via Coursera', d: 'Jun 2023', c: 'Security', f: 'google-foundations-of-cybersecurity.png', v: 'https://coursera.org/verify/DG5UVY77D72H' },
+    { t: 'Play It Safe: Manage Security Risks', by: 'Google via Coursera', d: 'Jun 2023', c: 'Security', f: 'google-manage-security-risks.png', v: 'https://coursera.org/verify/V4KN576Z8TJ9' },
+    { t: 'Connect and Protect: Networks and Network Security', by: 'Google via Coursera', d: 'Jun 2023', c: 'Security', f: 'google-networks-and-network-security.png', v: 'https://coursera.org/verify/XCWGDXY5K963' },
+    { t: 'Tools of the Trade: Linux and SQL', by: 'Google via Coursera', d: 'Jul 2023', c: 'DevOps & Linux', f: 'google-linux-and-sql.png', v: 'https://coursera.org/verify/8P9QDRTPV354' },
+    { t: 'Getting Started with DevOps', by: 'Simplilearn SkillUP', d: 'Jul 2022', c: 'DevOps & Linux', f: 'simplilearn-getting-started-devops.png', v: '' },
+    { t: 'Python for Data Science', by: 'Manipal ProLearn', d: 'Feb 2022', c: 'Programming', f: 'manipal-python-data-science.png', v: '' },
+    { t: 'Python Developer', by: 'Manipal ProLearn', d: 'Dec 2021', c: 'Programming', f: 'manipal-python-developer.png', v: '' }
+  ]
+};
+
+/* ---------- Theme ---------- */
+const root = document.documentElement;
+function setTheme(dark) {
+  root.classList.toggle('dark', dark);
+  try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+}
+$('#themeBtn').onclick = () => setTheme(!root.classList.contains('dark'));
+
+/* ---------- Mobile nav ---------- */
+const mBtn = $('#menuBtn'), mNav = $('#mobileNav');
+mBtn.onclick = () => { const open = mNav.classList.toggle('hidden'); mNav.classList.toggle('flex', !open); mBtn.setAttribute('aria-expanded', String(!open)); };
+$$('#mobileNav a').forEach(a => a.onclick = () => { mNav.classList.add('hidden'); mNav.classList.remove('flex'); });
+
+/* ---------- Toast ---------- */
+let tt;
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.style.opacity = 1; clearTimeout(tt); tt = setTimeout(() => t.style.opacity = 0, 2200); }
+
+/* ---------- Hero typing line ---------- */
+(function () {
+  const phrases = ['DevOps Engineer', 'Cloud and Linux specialist', 'Cyber Security MSc graduate', 'CI/CD and automation builder'];
+  const el = $('#typed'); let i = 0, j = 0, del = false;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = phrases[0]; return; }
+  (function tick() {
+    const p = phrases[i];
+    el.textContent = p.slice(0, j);
+    if (!del && j === p.length) { del = true; return setTimeout(tick, 1600); }
+    if (del && j === 0) { del = false; i = (i + 1) % phrases.length; }
+    j += del ? -1 : 1;
+    setTimeout(tick, del ? 35 : 70);
+  })();
+})();
+
+/* ---------- About facts ---------- */
+$('#facts').innerHTML = [
+  ['3+ years', 'in DevOps roles'], ['3 clouds', 'AWS, GCP and Azure'], ['10', 'completed certificates']
+].map(([a, b]) => `<div class="chip rounded-xl p-4"><div class="font-display font-extrabold text-2xl text-ink">${a}</div><div class="text-sm">${b}</div></div>`).join('');
+
+/* ---------- Skills tabs ---------- */
+(function () {
+  const tabs = $('#skillTabs'), panel = $('#skillPanel'); const keys = Object.keys(CV.skills);
+  function show(k) {
+    $$('button', tabs).forEach(b => { const on = b.dataset.k === k; b.classList.toggle('tab-on', on); b.setAttribute('aria-selected', on); });
+    const s = CV.skills[k];
+    panel.innerHTML = `<p class="text-lg text-mute max-w-2xl">${s.note}</p><div class="mt-6 flex flex-wrap gap-3">${s.items.map(x => `<span class="px-4 py-2 rounded-lg border border-line bg-bg font-medium hover:border-acc hover:-translate-y-0.5 transition">${x}</span>`).join('')}</div>`;
+  }
+  tabs.innerHTML = keys.map(k => `<button role="tab" data-k="${k}" class="chip rounded-full px-4 py-2 text-sm font-medium hover:border-acc transition">${k}</button>`).join('');
+  tabs.onclick = e => { const b = e.target.closest('button'); if (b) show(b.dataset.k); };
+  show(keys[0]);
+})();
+
+/* ---------- Experience timeline ---------- */
+$('#timeline').innerHTML = CV.jobs.map((j, i) => `
+  <article class="relative">
+    <span class="absolute -left-8 top-1.5 w-4 h-4 rounded-full border-2 border-acc bg-bg"></span>
+    <button class="w-full text-left chip rounded-xl p-5 hover:border-acc transition" aria-expanded="${i === 0}" data-job>
+      <div class="flex justify-between gap-3 items-start">
+        <div><h3 class="font-display font-bold text-lg leading-snug">${j.role}</h3><p class="text-mute">${j.org}</p><p class="text-sm text-acc2 mt-1">${j.when}</p></div>
+        <span class="text-acc text-xl transition-transform" data-ic>${i === 0 ? '−' : '+'}</span>
+      </div>
+      <ul class="${i === 0 ? '' : 'hidden'} mt-4 space-y-2 text-mute list-disc pl-5" data-body>${j.pts.map(p => `<li>${p}</li>`).join('')}</ul>
+    </button>
+  </article>`).join('');
+$$('[data-job]').forEach(b => b.onclick = () => {
+  const body = $('[data-body]', b), open = body.classList.toggle('hidden');
+  b.setAttribute('aria-expanded', String(!open)); $('[data-ic]', b).textContent = open ? '+' : '−';
+});
+
+/* ---------- Projects master-detail ---------- */
+(function () {
+  const list = $('#projList'), panel = $('#projPanel');
+  list.innerHTML = CV.projects.map((p, i) => `<button role="tab" data-i="${i}" class="chip rounded-xl px-5 py-4 text-left font-display font-bold hover:border-acc transition whitespace-nowrap lg:whitespace-normal shrink-0">${p.name}</button>`).join('');
+  function show(i) {
+    $$('button', list).forEach((b, k) => { b.classList.toggle('tab-on', k === i); b.setAttribute('aria-selected', k === i); });
+    const p = CV.projects[i];
+    panel.innerHTML = `<h3 class="font-display font-extrabold text-2xl sm:text-3xl tracking-tight">${p.name}</h3><p class="mt-4 text-lg leading-relaxed text-mute">${p.text}</p>
+      <div class="mt-6 flex flex-wrap gap-2">${p.tags.map(t => `<span class="px-3 py-1 rounded-full border border-line bg-bg text-sm">${t}</span>`).join('')}</div>
+      <a href="https://github.com/Raju00533" target="_blank" rel="noopener" class="inline-block mt-8 text-acc font-semibold hover:underline underline-offset-4">More on GitHub</a>`;
+  }
+  list.onclick = e => { const b = e.target.closest('button'); if (b) show(+b.dataset.i); };
+  show(0);
+})();
+
+/* ---------- Certificates + lightbox ---------- */
+(function () {
+  const cats = ['All', ...new Set(CV.certs.map(c => c.c))];
+  const grid = $('#certGrid'), fl = $('#certFilters'); let shown = [], cur = 0;
+  function render(cat) {
+    $$('button', fl).forEach(b => b.classList.toggle('tab-on', b.dataset.c === cat));
+    shown = CV.certs.filter(c => cat === 'All' || c.c === cat);
+    grid.innerHTML = shown.map((c, i) => `
+      <button data-i="${i}" class="chip rounded-2xl overflow-hidden text-left group hover:border-acc hover:-translate-y-1 transition duration-300" aria-label="View ${c.t} certificate">
+        <div class="overflow-hidden bg-white"><img src="certs/${c.f}" alt="${c.t} certificate" loading="lazy" class="cert-img w-full group-hover:scale-[1.03] transition duration-500" onerror="this.alt='Image not found. Keep the certs folder next to index.html.'"></div>
+        <div class="p-5"><h3 class="font-display font-bold leading-snug">${c.t}</h3><p class="text-sm text-mute mt-1">${c.by}</p><p class="text-sm text-acc2 mt-2">${c.d} · ${c.c}</p></div>
+      </button>`).join('');
+  }
+  fl.innerHTML = cats.map(c => `<button data-c="${c}" class="chip rounded-full px-4 py-2 text-sm font-medium hover:border-acc transition">${c}</button>`).join('');
+  fl.onclick = e => { const b = e.target.closest('button'); if (b) render(b.dataset.c); };
+  const lb = $('#lb');
+  function open(i) {
+    cur = (i + shown.length) % shown.length; const c = shown[cur];
+    $('#lbImg').src = 'certs/' + c.f; $('#lbImg').alt = c.t + ' certificate';
+    $('#lbCap').textContent = c.t + ' (' + c.by + ')';
+    const v = $('#lbVerify'); v.classList.toggle('hidden', !c.v); if (c.v) v.href = c.v;
+    lb.classList.remove('hidden'); lb.classList.add('flex'); document.body.style.overflow = 'hidden'; $('#lbClose').focus();
+  }
+  function close() { lb.classList.add('hidden'); lb.classList.remove('flex'); document.body.style.overflow = ''; }
+  grid.onclick = e => { const b = e.target.closest('button'); if (b) open(+b.dataset.i); };
+  $('#lbClose').onclick = close; $('#lbPrev').onclick = () => open(cur - 1); $('#lbNext').onclick = () => open(cur + 1);
+  lb.onclick = e => { if (e.target === lb) close(); };
+  addEventListener('keydown', e => { if (lb.classList.contains('hidden')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') open(cur - 1); if (e.key === 'ArrowRight') open(cur + 1); });
+  render('All');
+})();
+
+/* ---------- Contact ---------- */
+$('#copyMail').onclick = () => { navigator.clipboard && navigator.clipboard.writeText('raju12ghimire@gmail.com').then(() => toast('Email copied')).catch(() => toast('Copy failed. Select the address manually.')); };
+$('#form').onsubmit = e => {
+  e.preventDefault();
+  const n = $('#fn').value.trim(), m = $('#fe').value.trim(), b = $('#fm').value.trim(), err = $('#formErr');
+  if (!n || !/^\S+@\S+\.\S+$/.test(m) || !b) { err.textContent = 'Please add your name, a valid email address and a message.'; err.classList.remove('hidden'); return; }
+  err.classList.add('hidden');
+  location.href = 'mailto:raju12ghimire@gmail.com?subject=' + encodeURIComponent('Portfolio message from ' + n) + '&body=' + encodeURIComponent(b + '\n\nFrom: ' + n + ' (' + m + ')');
+  toast('Opening your email app');
+};
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---------- Scroll: progress, back-to-top, active nav ---------- */
+const toTop = $('#toTop');
+addEventListener('scroll', () => {
+  const h = document.documentElement, y = h.scrollTop, max = h.scrollHeight - h.clientHeight;
+  $('#progress').style.width = (max > 0 ? y / max * 100 : 0) + '%';
+  const show = y > 500; toTop.style.opacity = show ? 1 : 0; toTop.style.transform = show ? 'none' : 'translateY(5rem)';
+}, { passive: true });
+toTop.onclick = () => scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+const links = $$('#nav a');
+$$('main section').forEach(s => new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) links.forEach(a => a.classList.toggle('nav-on', a.getAttribute('href') === '#' + s.id)); }), { rootMargin: '-45% 0px -50% 0px' }).observe(s));
+
+/* ---------- Interactive terminal ---------- */
+(function () {
+  const out = $('#out'), input = $('#cmd'), hist = []; let hi = 0;
+  const line = (html, cls = '') => { const d = document.createElement('div'); d.className = cls; d.innerHTML = html; out.appendChild(d); out.scrollTop = out.scrollHeight; };
+  const certNames = CV.certs.map(c => c.t);
+  const cmds = {
+    help: () => ['<span class="g">Available commands</span>', ...[['whoami', 'a quick intro'], ['skills', 'tools by area'], ['experience', 'roles held'], ['projects', 'what I have built'], ['certs', 'all certificates'], ['education', 'degrees'], ['contact', 'how to reach me'], ['theme', 'switch dark / light'], ['clear', 'clear the screen']].map(([a, b]) => `  <span class="p">${a.padEnd(11, ' ')}</span><span class="m">${b}</span>`)].join('<br>'),
+    whoami: () => 'Raju Ghimire, DevOps Engineer.<br><span class="m">3+ years on AWS, Linux, Docker, Kubernetes and CI/CD. MSc Cyber Security, London.</span>',
+    skills: () => Object.entries(CV.skills).map(([k, v]) => `<span class="g">${k}</span>: ${v.items.join(', ')}`).join('<br>'),
+    experience: () => CV.jobs.map(j => `<span class="g">${j.role}</span><br><span class="m">  ${j.org}, ${j.when}</span>`).join('<br>'),
+    projects: () => CV.projects.map(p => `<span class="g">${p.name}</span><br><span class="m">  ${p.tags.join(', ')}</span>`).join('<br>'),
+    certs: () => certNames.map(n => '• ' + n).join('<br>') + `<br><span class="m">${certNames.length} total. Scroll to Certificates to view them.</span>`,
+    education: () => '<span class="g">MSc Cyber Security</span> (2025 to 2026), University of the West of Scotland, London<br><span class="g">BSc Information Technology</span> (2020 to 2023), LBEF / Asia Pacific University',
+    contact: () => 'Email: <a href="mailto:raju12ghimire@gmail.com">raju12ghimire@gmail.com</a><br>GitHub: <a href="https://github.com/Raju00533" target="_blank" rel="noopener">Raju00533</a><br>LinkedIn: <a href="https://www.linkedin.com/in/raju-690708250/" target="_blank" rel="noopener">Raju G.</a>',
+    theme: () => { setTheme(!root.classList.contains('dark')); return 'Theme switched.'; },
+    clear: () => { out.innerHTML = ''; return null; },
+    'sudo hire raju': () => { setTimeout(() => $('#contact').scrollIntoView({ behavior: 'smooth' }), 700); return '<span class="g">Permission granted.</span> Taking you to the contact form...'; }
+  };
+  function run(raw) {
+    const c = raw.trim().toLowerCase().replace(/\s+/g, ' ');
+    const echo = document.createElement('div'); echo.innerHTML = '<span class="p">raju@portfolio:~$</span> '; echo.append(document.createTextNode(raw)); out.appendChild(echo);
+    if (!c) return;
+    hist.push(raw); hi = hist.length;
+    const r = cmds[c] ? cmds[c]() : `command not found: ${c.replace(/[<>&]/g, '')}. Type <span class="p">help</span>.`;
+    if (r) line(r, 'mb-2 w');
+    out.scrollTop = out.scrollHeight;
+  }
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { run(input.value); input.value = ''; }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); if (hi > 0) input.value = hist[--hi]; }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); input.value = hi < hist.length - 1 ? hist[++hi] : (hi = hist.length, ''); }
+  });
+  $('#terminal').addEventListener('click', e => { if (!e.target.closest('a,button')) input.focus({ preventScroll: true }); });
+  $('#chips').innerHTML = ['help', 'skills', 'projects', 'certs', 'contact'].map(c => `<button data-c="${c}" class="px-3 py-1 rounded-md border text-xs hover:opacity-80" style="border-color:#243049;color:#4fd1c5">${c}</button>`).join('');
+  $('#chips').onclick = e => { const b = e.target.closest('button'); if (b) run(b.dataset.c); };
+
+  // Boot sequence, then an auto-typed first command
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wait = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
+  (async () => {
+    const boot = ['Initialising system components...', 'Running security checks... <span class="g">ok</span>', 'Loading portfolio assets... <span class="g">ok</span>'];
+    for (const b of boot) { line('<span class="m">$</span> ' + b); await wait(380); }
+    const d = document.createElement('div'); d.innerHTML = '<span class="p">raju@portfolio:~$</span> <span id="auto"></span>'; out.appendChild(d);
+    for (const ch of 'whoami') { $('#auto').textContent += ch; await wait(90); }
+    await wait(250); line(cmds.whoami(), 'mb-2 w');
+    line('<span class="m">Type <span class="p">help</span> to see what else you can run. Try <span class="p">sudo hire raju</span>.</span>', 'mb-1');
+  })();
+})();
+</script>
 </body>
 </html>
